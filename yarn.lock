@@ -5337,7 +5337,14 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typeorm@^0.3.17:
+typeorm-auditing@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/typeorm-auditing/-/typeorm-auditing-0.5.6.tgz#293b384aabaa64ab2f3ebd2a5197cbb3d50fe1ed"
+  integrity sha512-lMm09jIJydgZwj5cT2jv8F1V/cheIftY/asZSJJV+yGuN/xXkCgzG+W0R0wT+KbQOz3tV08cpLfG0nOMpvnvdw==
+  dependencies:
+    typeorm "^0.3.0"
+
+typeorm@^0.3.0, typeorm@^0.3.17:
   version "0.3.17"
   resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.3.17.tgz#a73c121a52e4fbe419b596b244777be4e4b57949"
   integrity sha512-UDjUEwIQalO9tWw9O2A4GU+sT3oyoUXheHJy4ft+RFdnRdQctdQ34L9SqE2p7LdwzafHx1maxT+bqXON+Qnmig==

@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Person } from './models/Person';
+import { PersonAudit } from './models/PersonAudit';
+import { AuditingSubscriber } from 'typeorm-auditing';
 
 @Module({
   imports: [
@@ -15,9 +17,10 @@ import { Person } from './models/Person';
       password: 'audit',
       migrationsRun: false,
       autoLoadEntities: true,
-      logging: 'all'
+      logging: 'all',
+      subscribers: [AuditingSubscriber]
     }),
-    TypeOrmModule.forFeature([Person])
+    TypeOrmModule.forFeature([Person, PersonAudit])
   ],
   controllers: [AppController],
   providers: [AppService]

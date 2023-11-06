@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Person } from './models/Person';
+import { PersonAudit } from './models/PersonAudit';
 
 @Controller('/person')
 export class AppController {
@@ -23,6 +24,11 @@ export class AppController {
   @Get()
   public async getPersons(): Promise<Person[]> {
     return this.appService.getPersons();
+  }
+
+  @Get('/audit')
+  public async getAudit(): Promise<PersonAudit[]> {
+    return this.appService.getAudit();
   }
 
   @Get('/:id')
