@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Person } from './models/Person';
 import { PersonAudit } from './models/PersonAudit';
 import { AuditingSubscriber } from 'typeorm-auditing';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { PersonSubscriber } from './orm/PersonSubscriber';
+import { PersonAuditEventListener } from './events/PersonAuditEventListener';
 
 @Module({
   imports: [
@@ -18,12 +21,14 @@ import { AuditingSubscriber } from 'typeorm-auditing';
       migrationsRun: false,
       autoLoadEntities: true,
       logging: 'all',
-      subscribers: [AuditingSubscriber]
+      subscribers: [AuditingSubscriber],
     }),
-    TypeOrmModule.forFeature([Person, PersonAudit])
+    TypeOrmModule.forFeature([Person, PersonAudit]),
+    EventEmitterModule.forRoot({
+      wildcard: true,
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, PersonSubscriber, PersonAuditEventListener],
 })
-export class AppModule {
-}
+export class AppModule {}

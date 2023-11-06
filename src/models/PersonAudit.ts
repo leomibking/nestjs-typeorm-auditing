@@ -1,14 +1,8 @@
-import {
-  AuditingAction,
-  AuditingEntity,
-  AuditingEntityDefaultColumns,
-} from 'typeorm-auditing';
+import { AuditingAction, AuditingEntity, AuditingEntityDefaultColumns } from 'typeorm-auditing';
 import { Person } from './Person';
 
 @AuditingEntity(Person)
-export class PersonAudit
-  extends Person
-  implements AuditingEntityDefaultColumns
+export class PersonAudit extends Person implements AuditingEntityDefaultColumns
 {
   readonly _seq: number;
   readonly _action: AuditingAction;
