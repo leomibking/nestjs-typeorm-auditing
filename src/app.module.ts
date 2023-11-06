@@ -8,6 +8,8 @@ import { AuditingSubscriber } from 'typeorm-auditing';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { PersonSubscriber } from './orm/PersonSubscriber';
 import { PersonAuditEventListener } from './events/PersonAuditEventListener';
+import { MongooseModule } from '@nestjs/mongoose';
+import { PersonAuditEntitySchema, PersonAuditSchema } from './models/PersonAuditSchema';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { PersonAuditEventListener } from './events/PersonAuditEventListener';
     EventEmitterModule.forRoot({
       wildcard: true,
     }),
+    MongooseModule.forRoot('mongodb://audit:audit@localhost:27027'),
+    MongooseModule.forFeature([{ name: PersonAuditEntitySchema.name, schema: PersonAuditSchema }]),
   ],
   controllers: [AppController],
   providers: [AppService, PersonSubscriber, PersonAuditEventListener],

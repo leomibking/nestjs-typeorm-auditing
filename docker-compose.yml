@@ -17,3 +17,13 @@ services:
       - "5435:5432"
     volumes:
       - pg_data_b2b:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo
+    container_name: nestjs-audit-mongo
+    hostname: nestjs-audit-mongo
+    ports:
+      - "27027:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: audit
+      MONGO_INITDB_ROOT_PASSWORD: audit
