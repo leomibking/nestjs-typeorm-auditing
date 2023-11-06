@@ -1,0 +1,19 @@
+version: '3.7'
+
+volumes:
+  rabbitmq_data_b2b:
+  pg_data_b2b:
+
+services:
+  postgres:
+    container_name: nestjs-audit-pg
+    hostname: nestjs-audit-pg
+    image: postgres:16.0
+    environment:
+      POSTGRES_DB: 'audit'
+      POSTGRES_USER: 'audit'
+      POSTGRES_PASSWORD: 'audit'
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg_data_b2b:/var/lib/postgresql/data
