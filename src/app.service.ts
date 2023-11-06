@@ -3,15 +3,18 @@ import { Person } from './models/Person';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PersonAudit } from './models/PersonAudit';
+import { PersonAuditEntitySchema } from './models/PersonAuditSchema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectRepository(Person) private readonly repository: Repository<Person>,
     @InjectRepository(PersonAudit)
-    private readonly personAuditRepository: Repository<PersonAudit>
-  ) {
-  }
+    private readonly personAuditRepository: Repository<PersonAudit>,
+    @InjectModel(PersonAuditEntitySchema.name) private readonly auditSchema: Model<PersonAuditEntitySchema>,
+  ) {}
 
   createPerson(person: Person) {
     return this.repository.save(person);
@@ -32,5 +35,9 @@ export class AppService {
 
   getAudit() {
     return this.personAuditRepository.find({ order: { _seq: 'desc' } });
+  }
+
+  async getAuditMongo(): Promise<PersonAuditEntitySchema[]> {
+    return this.auditSchema.find().exec();
   }
 }
