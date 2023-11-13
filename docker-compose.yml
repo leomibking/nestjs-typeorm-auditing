@@ -19,7 +19,7 @@ services:
       - pg_data_b2b:/var/lib/postgresql/data
 
   mongo:
-    image: mongo
+    image: mongo:4.4.18
     container_name: nestjs-audit-mongo
     hostname: nestjs-audit-mongo
     ports:
